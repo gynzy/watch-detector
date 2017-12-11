@@ -28,9 +28,18 @@ describe('WatchDetector', function() {
 
   it('#extractPreferenceFromOptions works', function() {
     expect(subject.extractPreferenceFromOptions({})).to.have.property('watcher', 'watchman');
-    expect(subject.extractPreferenceFromOptions({ watcher: 'polling' })).to.have.property('watcher', 'polling');
-    expect(subject.extractPreferenceFromOptions({ watcher: 'node' })).to.have.property('watcher', 'node');
-    expect(subject.extractPreferenceFromOptions({ watcher: 'nodsdfe' })).to.have.property('watcher', 'watchman');
+    expect(subject.extractPreferenceFromOptions({ watcher: 'polling' })).to.have.property(
+      'watcher',
+      'polling'
+    );
+    expect(subject.extractPreferenceFromOptions({ watcher: 'node' })).to.have.property(
+      'watcher',
+      'node'
+    );
+    expect(subject.extractPreferenceFromOptions({ watcher: 'nodsdfe' })).to.have.property(
+      'watcher',
+      'watchman'
+    );
   });
 
   describe('#testIfNodeWatcherAppearsToWork', function() {
@@ -44,12 +53,13 @@ describe('WatchDetector', function() {
 
     // we could extend this to test also if change events are triggered or not..
     it('reports YES if nothing throws', function() {
-      fs.watch = function() { return { close() { } }; };
+      fs.watch = function() {
+        return { close() {} };
+      };
 
       expect(subject.testIfNodeWatcherAppearsToWork()).to.be.true;
     });
   });
-
 
   describe('#findBestWatcherOption', function() {
     describe('input preference.watcher === watchman', function() {
@@ -78,7 +88,9 @@ describe('WatchDetector', function() {
         });
 
         it('false back to node if it can', function() {
-          fs.watch = function() { return { close() { } }; };
+          fs.watch = function() {
+            return { close() {} };
+          };
 
           let option = subject.findBestWatcherOption({ watcher: 'watchman' });
           expect(option.watchmanInfo).to.have.property('enabled', false);
@@ -119,7 +131,9 @@ describe('WatchDetector', function() {
 
     describe('input preference.watcher === node', function() {
       it('chooses node, if everything  seems ok', function() {
-        fs.watch = function() { return { close() { } }; };
+        fs.watch = function() {
+          return { close() {} };
+        };
 
         // we assuming polling can never not work, if it doesn't sorry..
         let option = subject.findBestWatcherOption({ watcher: 'node' });
@@ -150,7 +164,6 @@ describe('WatchDetector', function() {
         expect(ui.output).to.eql(`was unable to use: "node", fell back to: "polling"${EOL}`);
       });
     });
-
   });
 
   describe('#checkWatchman', function() {
@@ -161,7 +174,9 @@ describe('WatchDetector', function() {
         childProcess.execSync = function() {
           throw new Error();
         };
-        fs.watch = function() { return { close() { } }; };
+        fs.watch = function() {
+          return { close() {} };
+        };
 
         let result = subject.checkWatchman();
         expect(result).to.have.property('watcher', 'node');
@@ -170,7 +185,9 @@ describe('WatchDetector', function() {
 
       it('false: shows the "watchman not found, falling back to XYZ message"', function() {
         subject.watchmanSupportsPlatform = false;
-        fs.watch = function() { return { close() { } }; };
+        fs.watch = function() {
+          return { close() {} };
+        };
 
         childProcess.execSync = function() {
           throw new Error();
@@ -210,7 +227,7 @@ describe('WatchDetector', function() {
         expect(ui.output).to.match(/ember-cli\.com\/user-guide\/#watchman/);
       });
 
-      iff('the `watchman version` doesn\'t parse', function() {
+      iff("the `watchman version` doesn't parse", function() {
         childProcess.execSync = function() {
           return 'not json';
         };
@@ -221,8 +238,7 @@ describe('WatchDetector', function() {
         expect(ui.output).to.match(/ember-cli\.com\/user-guide\/#watchman/);
       });
 
-
-      iff('the `watchman version` doesn\'t satisfy => 3.0.0', function() {
+      iff("the `watchman version` doesn't satisfy => 3.0.0", function() {
         childProcess.execSync = function() {
           return '{"version":"2.9.9"}';
         };
