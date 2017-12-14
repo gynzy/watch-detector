@@ -26,6 +26,14 @@ describe('WatchDetector', function() {
     });
   });
 
+  it('has static class properties for watcher types', function() {
+    expect(WatchDetector).to.have.property('POLLING');
+    expect(WatchDetector).to.have.property('WATCHMAN');
+    expect(WatchDetector).to.have.property('EVENTS');
+    expect(WatchDetector).to.have.property('NODE');
+    expect(WatchDetector).to.have.property('POSSIBLE_WATCHERS');
+  });
+
   it('#extractPreferenceFromOptions works', function() {
     expect(subject.extractPreferenceFromOptions({})).to.have.property('watcher', 'watchman');
     expect(subject.extractPreferenceFromOptions({ watcher: 'polling' })).to.have.property(
