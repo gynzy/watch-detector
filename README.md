@@ -40,7 +40,6 @@ sane(root, options);
 ```js
 new WatchDetector({
   ui: /* console-ui instance */,
-  fs: /* fs instance */,
-  watchmanSupportsPlatform: true | false /* defaults to no for windows */
+  fs: /* fs instance */
 });
 ```
