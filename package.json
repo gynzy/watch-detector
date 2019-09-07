@@ -21,27 +21,26 @@
   },
   "homepage": "https://github.com/chrmod/watch-detector#readme",
   "devDependencies": {
-    "chai": "^4.1.2",
+    "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "console-ui": "^2.0.1",
-    "eslint-config-prettier": "^2.8.0",
-    "eslint-plugin-mocha": "^4.11.0",
-    "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-prettier": "^2.3.1",
-    "mocha": "^4.0.1",
-    "mocha-eslint": "^4.1.0",
-    "prettier": "^1.8.2",
-    "sinon": "^4.1.2",
-    "sinon-chai": "^2.14.0"
+    "console-ui": "^3.1.1",
+    "eslint-config-prettier": "^6.2.0",
+    "eslint-plugin-mocha": "^6.1.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "mocha": "^6.2.0",
+    "mocha-eslint": "^5.0.0",
+    "prettier": "^1.18.2",
+    "sinon": "^7.4.2",
+    "sinon-chai": "^3.3.0"
   },
   "engines": {
     "node": ">= 8"
   },
   "dependencies": {
-    "heimdalljs-logger": "^0.1.9",
-    "quick-temp": "^0.1.8",
-    "rsvp": "^4.7.0",
-    "semver": "^5.4.1",
-    "silent-error": "^1.1.0"
+    "heimdalljs-logger": "^0.1.10",
+    "semver": "^6.3.0",
+    "silent-error": "^1.1.1",
+    "tmp": "^0.1.0"
   }
 }
