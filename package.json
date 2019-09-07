@@ -40,7 +40,6 @@
   "dependencies": {
     "heimdalljs-logger": "^0.1.9",
     "quick-temp": "^0.1.8",
-    "rsvp": "^4.7.0",
     "semver": "^5.4.1",
     "silent-error": "^1.1.0"
   }
