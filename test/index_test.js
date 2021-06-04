@@ -208,18 +208,6 @@ describe('WatchDetector', function() {
         expect(ui.output).to.match(/Looks like you have a different program called watchman/);
         expect(ui.output).to.match(/ember-cli\.com\/user-guide\/#watchman/);
       });
-
-      iff("the `watchman version` doesn't satisfy => 3.0.0", function() {
-        childProcess.execSync = function() {
-          return '{"version":"2.9.9"}';
-        };
-
-        let preference = subject.checkWatchman();
-        expect(preference).to.have.property('watcher', 'node');
-        expect(ui.output).to.match(/Invalid watchman found/);
-        expect(ui.output).to.match(/version: \[2\.9\.9\] did not satisfy/);
-        expect(ui.output).to.match(/ember-cli\.com\/user-guide\/#watchman/);
-      });
     });
   });
 });
